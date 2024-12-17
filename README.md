@@ -1,2 +1,4 @@
 # ENPM667_FinalProject
-Final Project for UMD ENPM667 - Robotics Controls
+
+Dusin Hartnett and Kyle Deguzman's Final Project
+
