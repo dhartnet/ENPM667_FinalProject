@@ -6,9 +6,9 @@ l1 = 20;
 l2 = 10;
 g = 9.81;
 
-x0Deg = [0, 0, 3, 0, -5, 0]; % Intitial Conditions]
+% Initial conditions (in degrees)
+x0Deg = [0, 0, 3, 0, -5, 0];
 
-% A matrix
 A = [0 1 0 0 0 0; 
     0 0 -m1*g/M 0 -m2*g/M 0; 
     0 0 0 1 0 0; 
@@ -21,7 +21,7 @@ B = [0;
     0; 
     1/(M*l1); 
     0; 
-    1/(M*l2)]; % B matrix
+    1/(M*l2)];
 
 % C matrices (output matrices)
 C1 = [1 0 0 0 0 0; 
@@ -38,7 +38,7 @@ C3 = [1 0 0 0 0 0;
 
 D = 0; % D matrix
 
-noise1 = 0.1; % higher the number the smoother the plot
+noise1 = 0.1; % covariance
 G = [noise1 0 0 0 0 0;
     0 noise1 0 0 0 0;
     0 0 noise1 0 0 0;
@@ -48,16 +48,18 @@ G = [noise1 0 0 0 0 0;
 
 QN = G; %  Process and sensor noise covariance matrices
 
-noise2 = 0.0001; % lower the number the smoother the plot
+noise2 = 0.0001; % covariance
 RN = [noise2 0 0;
     0 noise2 0;
     0 0 noise2]; %  Process and sensor noise covariance matrices
 
-[L1,P1,E1] = lqe(A, G, C1, QN, RN); % L = luenberger observer
+% Evaluate disturbances and system and get L = luenberger observer
+[L1,P1,E1] = lqe(A, G, C1, QN, RN);
 [L2,P2,E2] = lqe(A, G, C2, QN, RN);
 [L3,P3,E3] = lqe(A, G, C3, QN, RN);
 
-Ac1 = A-L1*C1; % Ac = (A-LC)
+% Define Ac as (A - LC)
+Ac1 = A-L1*C1;
 Ac2 = A-L2*C2;
 Ac3 = A-L3*C3;
 
@@ -68,7 +70,7 @@ figure(1)
 sys1 = ss(Ac1, B, C1, D); % State estimation
 ip1 = initialplot(sys1, x0Deg);
 title('[X(t)] Observer for Response to Initial Conditions')
-ip1.OutputNames = ["X (Meters)"; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
+ip1.OutputNames = ['X (Meters)'; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
 grid on
 
 % Initial conditions for C2
@@ -76,7 +78,7 @@ figure(2)
 sys2 = ss(Ac2, B, C2, D); % State estimation
 ip2 = initialplot(sys2, x0Deg);
 title('[X(t), Theta2(t)] Observer for Response to Initial Conditions')
-ip2.OutputNames = ["X (Meters)"; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
+ip2.OutputNames = ['X (Meters)'; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
 grid on
 
 % Initial conditions for C3
@@ -84,7 +86,7 @@ figure(3)
 sys3 = ss(Ac3, B, C3, D); % State estimation
 ip3 = initialplot(sys3, x0Deg);
 title('[X(t), Theta1(t), Theta2(t)] Observer for Response to Initial Conditions')
-ip3.OutputNames = ["X (Meters)"; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
+ip3.OutputNames = ['X (Meters)'; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
 grid on
 
 % Step for C1
