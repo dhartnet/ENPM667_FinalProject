@@ -6,7 +6,8 @@ l1 = 20;
 l2 = 10;
 g = 9.81;
 
-x0 = [1, 0, deg2rad(3), 0, deg2rad(-5), 0, 0, 0, 0, 0, 0, 0]; % Intitial Conditions
+% Intitial Conditions
+x0 = [1, 0, deg2rad(3), 0, deg2rad(-5), 0, 0, 0, 0, 0, 0, 0]; 
 t_a = linspace(0, 60); %, 0.5); %time vector
 
 A = [0 1 0 0 0 0; 
@@ -53,13 +54,15 @@ RN = [noise2 0 0;
     0 noise2 0;
     0 0 noise2]; %  Process and sensor noise covariance matrices
 
-[Lun1,P1,E1] = lqe(A, G, C1, QN, RN); % L = luenberger observer
+% L = luenberger observer
+[Lun1,P1,E1] = lqe(A, G, C1, QN, RN); 
 [Lun2,P2,E2] = lqe(A, G, C2, QN, RN);
 [Lun3,P3,E3] = lqe(A, G, C3, QN, RN);
 
 % Non-Linear System Observers
 
-% X = [X, X^]
+% a = [X, X^] = [state, observer]
+% Function for first observer state
 function nonL = nonLinearModel1(a, F, M, m1, m2, l1, l2, g, L) % observer matrix is just x
 x = a(1);
 theta1 = a(3);
@@ -97,6 +100,7 @@ Xhat = [a(7);
 
 obs = L*(Y - Xhat);
 
+% X^' = AX^ + Bk*Uk + L(Y-CX^), Uk = -KX
 nonL(7) = a(2) + obs(1);
 nonL(8) = b + obs(2);
 nonL(9) = a(4) + obs(3);
@@ -105,6 +109,8 @@ nonL(11) = a(6) + obs(5);
 nonL(12) = (1/l2)*cos(a(5))*b - (g/l2)*sin(a(5)) + obs(6);
 end
 
+% a = [X, X^] = [state, observer]
+% Function for second observer state
 function nonL = nonLinearModel2(a, F, M, m1, m2, l1, l2, g, L) % observer matrix is x, theta 2
 x = a(1);
 theta1 = a(3);
@@ -142,6 +148,7 @@ Xhat = [a(7);
 
 obs = L*(Y - Xhat);
 
+% X^' = AX^ + Bk*Uk + L(Y-CX^), Uk = -KX
 nonL(7) = a(2) + obs(1);
 nonL(8) = b + obs(2);
 nonL(9) = a(4) + obs(3);
@@ -150,6 +157,8 @@ nonL(11) = a(6) + obs(5);
 nonL(12) = (1/l2)*cos(a(5))*b - (g/l2)*sin(a(5)) + obs(6);
 end
 
+% a = [X, X^] = [state, observer]
+% Function for third observer state
 function nonL = nonLinearModel3(a, F, M, m1, m2, l1, l2, g, L) % observer matrix is x, theta 1, theta 2
 x = a(1);
 theta1 = a(3);
@@ -187,6 +196,7 @@ Xhat = [a(7);
 
 obs = L*(Y - Xhat);
 
+% X^' = AX^ + Bk*Uk + L(Y-CX^), Uk = -KX
 nonL(7) = a(2) + obs(1);
 nonL(8) = b + obs(2);
 nonL(9) = a(4) + obs(3);
