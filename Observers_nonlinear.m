@@ -100,7 +100,7 @@ Xhat = [a(7);
 
 obs = L*(Y - Xhat);
 
-% X^' = AX^ + Bk*Uk + L(Y-CX^), Uk = -KX
+% X^' = AX^ + Bk*Uk + L(Y-CX^)
 nonL(7) = a(2) + obs(1);
 nonL(8) = b + obs(2);
 nonL(9) = a(4) + obs(3);
@@ -148,7 +148,7 @@ Xhat = [a(7);
 
 obs = L*(Y - Xhat);
 
-% X^' = AX^ + Bk*Uk + L(Y-CX^), Uk = -KX
+% X^' = AX^ + Bk*Uk + L(Y-CX^)
 nonL(7) = a(2) + obs(1);
 nonL(8) = b + obs(2);
 nonL(9) = a(4) + obs(3);
@@ -196,7 +196,7 @@ Xhat = [a(7);
 
 obs = L*(Y - Xhat);
 
-% X^' = AX^ + Bk*Uk + L(Y-CX^), Uk = -KX
+% X^' = AX^ + Bk*Uk + L(Y-CX^)
 nonL(7) = a(2) + obs(1);
 nonL(8) = b + obs(2);
 nonL(9) = a(4) + obs(3);
