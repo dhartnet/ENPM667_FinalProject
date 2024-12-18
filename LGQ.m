@@ -6,10 +6,10 @@ l1 = 20;
 l2 = 10;
 g = 9.81;
 
+% Intitial Conditions
 x0 = [0, 0, deg2rad(3), 0, deg2rad(-5), 0, 0, 0, 0, 0, 0, 0]; % Intitial Conditions
-x0test = [1, 0, deg2rad(3), 0, deg2rad(-5), 0, 1, 0, 1, 0,1, 0]; % Intitial Conditions
 
-t_a = linspace(0, 60); %, 0.5); %time vector
+t_a = linspace(0, 60); %time vector
 
 A = [0 1 0 0 0 0; 
     0 0 -m1*g/M 0 -m2*g/M 0; 
@@ -32,7 +32,7 @@ C = [1 0 0 0 0 0;
 
 D = 0; % D matrix
 
-noise1 = 0.0001; % higher the number the smoother the plot
+noise1 = 0.0001; % Variance
 G = [noise1 0 0 0 0 0;
     0 noise1 0 0 0 0;
     0 0 noise1 0 0 0;
@@ -42,7 +42,7 @@ G = [noise1 0 0 0 0 0;
 
 QN = G; %  Process and sensor noise covariance matrices
 
-noise2 = 0.001; % lower the number the smoother the plot
+noise2 = 0.001; % variance
 RN = [noise2 0 0;
     0 noise2 0;
     0 0 noise2]; %  Process and sensor noise covariance matrices
@@ -55,6 +55,7 @@ V = sqrt(RN) * randn(size(C, 1), length(t_a));
 
 % Linear System - LQR
 
+% Gain matrices
 Q = [1500 0 0 0 0 0;
     0 0 0 0 0 0; 
     0 0 25000 0 0 0; 
@@ -65,11 +66,15 @@ Q = [1500 0 0 0 0 0;
 R = 0.001;
 
 sys = ss(A, B, C, D);
-[K,S,P] = lqr(sys,Q,R);
+[K,S,P] = lqr(sys,Q,R); % outputs K controller
 
 % Non-Linear System
 
-function nonL = nonLinearModel1(t, t_a, a, K, M, m1, m2, l1, l2, g, L,W,V) % observer matrix is just x
+% function defining system at each time instance in ode45
+function nonL = nonLinearModel1(t, t_a, a, K, M, m1, m2, l1, l2, g, L, W, V) 
+
+% a is 12x6 state variable matrix, with first 6x6 part being the system state and the send 6x6 part being the state estimator/observer
+
 x = a(1);
 theta1 = a(3);
 theta2 = a(5);
@@ -82,6 +87,7 @@ Uk = -K*[a(1);
     a(5);
     a(6);];
 
+% Noise only in x state variable
 Bd = [1;
     0;
     0;
