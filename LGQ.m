@@ -1,3 +1,5 @@
+%% Code for Part G - LQG Simulation
+
 clear
 M = 1000;
 m1 = 100;
