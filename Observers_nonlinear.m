@@ -39,7 +39,7 @@ C3 = [1 0 0 0 0 0;
 
 D = 0; % D matrix
 
-noise1 = 0.1; % higher the number the smoother the plot
+noise1 = 0.1; % Covariance
 G = [noise1 0 0 0 0 0;
     0 noise1 0 0 0 0;
     0 0 noise1 0 0 0;
@@ -49,7 +49,7 @@ G = [noise1 0 0 0 0 0;
 
 QN = G; %  Process and sensor noise covariance matrices
 
-noise2 = 0.01; % lower the number the smoother the plot
+noise2 = 0.0001; % Covariance
 RN = [noise2 0 0;
     0 noise2 0;
     0 0 noise2]; %  Process and sensor noise covariance matrices
