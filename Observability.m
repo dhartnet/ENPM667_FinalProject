@@ -1,3 +1,5 @@
+%% Code for Part E - Output Vector Observability
+
 clear
 M = 1000;
 m1 = 100;
