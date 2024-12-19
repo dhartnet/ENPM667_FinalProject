@@ -5,7 +5,7 @@ ENPM667-RO01
 
 # Code files for each part of the project:
 
-** *Part C* ** - controllability.m
+** * **Part C** * ** - controllability.m
 
 ** *Part D* ** - LQR.m
 
