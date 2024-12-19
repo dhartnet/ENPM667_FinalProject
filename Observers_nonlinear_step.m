@@ -8,7 +8,7 @@ g = 9.81;
 
 % Intitial Conditions
 x0 = [0, 0, deg2rad(3), 0, deg2rad(-5), 0, 0, 0, 0, 0, 0, 0];
-t_a = linspace(0, 60); %, 0.5); %time vector
+t_a = linspace(0, 60); %time vector
 
 A = [0 1 0 0 0 0; 
     0 0 -m1*g/M 0 -m2*g/M 0; 
