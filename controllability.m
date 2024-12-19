@@ -1,3 +1,5 @@
+%% Code for Part C - Controllability Conditions
+
 clear
 syms m1;
 syms m2;
