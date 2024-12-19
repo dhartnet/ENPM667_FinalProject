@@ -70,7 +70,7 @@ figure(1)
 sys1 = ss(Ac1, B, C1, D); % State estimation
 ip1 = initialplot(sys1, x0Deg);
 title('[X(t)] Observer for Response to Initial Conditions')
-ip1.OutputNames = ['X (Meters)'; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
+ip1.OutputNames = ["X (Meters)"; "Theta1 (Degrees)"; "Theta2 (Degrees)"];
 grid on
 
 % Initial conditions for C2
@@ -78,7 +78,7 @@ figure(2)
 sys2 = ss(Ac2, B, C2, D); % State estimation
 ip2 = initialplot(sys2, x0Deg);
 title('[X(t), Theta2(t)] Observer for Response to Initial Conditions')
-ip2.OutputNames = ['X (Meters)'; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
+ip2.OutputNames = ["X (Meters)"; "Theta1 (Degrees)"; "Theta2 (Degrees)"];
 grid on
 
 % Initial conditions for C3
@@ -86,7 +86,7 @@ figure(3)
 sys3 = ss(Ac3, B, C3, D); % State estimation
 ip3 = initialplot(sys3, x0Deg);
 title('[X(t), Theta1(t), Theta2(t)] Observer for Response to Initial Conditions')
-ip3.OutputNames = ['X (Meters)'; 'Theta1 (Degrees)'; 'Theta2 (Degrees)'];
+ip3.OutputNames = ["X (Meters)"; "Theta1 (Degrees)"; "Theta2 (Degrees)"];
 grid on
 
 % Step for C1
