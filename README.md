@@ -1,6 +1,6 @@
 # ENPM667_FinalProject
 
-Dusin Hartnett and Kyle Deguzman's Final Project
+Dustin Hartnett and Kyle Deguzman's Final Project
 ENPM667-RO01
 
 # Code files for each part of the project:
