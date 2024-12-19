@@ -11,7 +11,8 @@ ENPM667-RO01
 
 **Part E** - *Observability.m*
 
-**Part F** - *Observers.m* (linear system observers)
+**Part F** 
+- *Observers.m* (linear system observers)
 - *Observers_nonlinear.m* (nonlinear system observer for response to initial conditions)
 - *Observers_nonlinear_step.m* (nonlinear system observer for response to step input)
 
