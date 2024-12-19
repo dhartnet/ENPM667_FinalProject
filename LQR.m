@@ -1,3 +1,5 @@
+%% Code for part D - LQR Simulation
+
 clear
 M = 1000;
 m1 = 100;
